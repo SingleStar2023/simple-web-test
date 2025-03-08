@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Space Shooter</title>
+        <link rel="stylesheet" href="space_shooter.css">
+    </head>
+
+    <body>
+        <h1 class="text">P1</h1>
+        <h1 class="text">P2</h1>
+        <h3 class="text" id="statue"></h3>
+
+        <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+        <script>
+            const txt = document.getElementById("statue")
+            var our_id = ""
+            var players_id = []
+            var socket = io();
+
+            txt.textContent = "Wait for connection ..."
+
+            socket.on('connect', function() {
+                txt.textContent = "Connected ..."
+                console.log("Connected !!")
+            });
+            socket.on('disconnect', function() {
+                txt.textContent = "Disconnected ..."
+                console.log("Disconnected !!")
+            });
+            socket.on('income', function(data) {
+                if ("connection_update" in data)
+                {
+                    if (our_id == "")
+                    {
+                        our_id = data["ids"][data["ids"].length-1]
+                        txt.textContent = "The room is open !!"
+                    }
+                    players_id = data["ids"] 
+                    console.log(our_id , players_id)         
+                }
+                else if ("closed_room" in data)
+                {
+                    txt.textContent = "The room closed because one of the players disconnected !! Try again"
+                }
+            });
+            document.addEventListener("keypress", (keyboard) => {
+                socket.emit("message",keyboard.key)
+            })
+            socket.on("message", function(msg) {
+                txt.textContent = msg
+            })
+        </script>
+    </body>
+</html>

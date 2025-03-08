@@ -1,0 +1,135 @@
+@property --rotation{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+body{
+    background-color: rgb(40, 4, 73);
+    margin: 0%;
+}
+
+#title , #username{
+    translate: -50% -50%;
+
+    position: relative;
+    top: 25%;
+    left: 50%;
+
+    text-align: center;
+
+    font-family: 'Courier New', Courier, monospace;
+
+    cursor: default;
+}
+
+#username{
+    top: 10%;
+}
+
+#title_panel , #title_panel_back{
+    overflow: scroll;
+
+    background-color: rgb(104, 28, 175);
+
+    translate: -50% -50%;
+
+    position: absolute;
+    top: 250px;
+    left: 50%;
+
+    width: 425px;
+    height: 225px;
+
+    border-radius: 20px;
+
+    margin-top: -100px;
+}
+
+#title_panel_back{
+    background-color: rgb(81, 17, 141);
+
+    width: 435px;
+    height: 235px;
+
+    background: linear-gradient(var(--rotation),rgb(205, 156, 252),rgb(144, 56, 226),rgb(124, 36, 206),rgb(81, 17, 141),rgb(81, 17, 141));
+    filter: blur(5px);
+
+    animation: animation 5s infinite linear;
+}
+
+#textbox{
+    color: white;
+
+    position: absolute;
+    top: 400px;
+    left: 50%;
+
+    translate: -50% -50%;
+
+    background-color: blueviolet;
+    width: 200px;
+    height: 25px;
+
+    border-radius: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+#submit_button , #hidden_button{
+    position: absolute;
+    left: 50%;
+    top: 470px;
+
+    translate: -50% -50%;
+
+    background-color: blueviolet;
+    width: 140px;
+    height: 30px;
+
+    border-radius: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+#hidden_button{
+    position: absolute;
+    top: 435px;
+
+    width: 40px;
+    height: 25px;
+}
+
+#hidden_button:hover , #submit_button:hover{
+    background-color: rgb(191, 126, 252);
+    cursor: pointer;
+}
+
+#footer{
+    position: absolute;
+    top: 600px;
+    left: 50%;
+
+    translate: -50% -50%;
+
+    color: white;
+}
+
+#error{
+    position: absolute;
+    top: 300px;
+    left: 50%;
+
+    translate: -50% -50%;
+
+    color: red;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+@keyframes animation {
+    to {--rotation : 360deg};
+}
